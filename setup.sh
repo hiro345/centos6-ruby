@@ -13,6 +13,7 @@ curl -O http://ftp.riken.jp/Linux/fedora/epel/6/x86_64/${epelRpm}
 rpm -ivh ${epelRpm}
 rpm -ivh http://apt.sw.be/redhat/el6/en/x86_64/rpmforge/RPMS/${rpmforgeRpm}
 rpm -ivh http://rpms.famillecollet.com/enterprise/${remiRpm}
+sed -i '5s/enabled=0/enabled=1/' /etc/yum.repos.d/remi.repo
  
 # scp
 yum -y openssh-client
