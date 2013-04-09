@@ -1,11 +1,11 @@
-centos6-ruby
-==========e=
+# centos6-ruby
+===========
 
 CentOS minimal + Ruby 1.9.3 + RubyGems 2.0.3 with epel, rpmforge, remi repositories
 
 ## How to setup
 
-   curl https://github.com/hiro345/centos6-ruby/blob/master/setup.sh | sudo sh -
+    curl https://github.com/hiro345/centos6-ruby/blob/master/setup.sh | sudo sh -
 
 ## ruby
 
