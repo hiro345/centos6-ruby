@@ -16,7 +16,7 @@ rpm -ivh http://rpms.famillecollet.com/enterprise/${remiRpm}
 sed -i '5s/enabled=0/enabled=1/' /etc/yum.repos.d/remi.repo
  
 # scp
-yum -y openssh-client
+yum -y install openssh-client
 
 # make ruby
 yum -y install \
