@@ -2,18 +2,24 @@
 epelRpm=epel-release-6-8.noarch.rpm
 rpmforgeRpm=rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
 remiRpm=remi-release-6.rpm
-ruby=ruby-1.9.3-p392
+ruby=ruby-1.9.3-p448
 rubygems=rubygems-2.0.3
 
 # base update 
 yum -y update
 
 # regist repository
-curl -O http://ftp.riken.jp/Linux/fedora/epel/6/x86_64/${epelRpm}
-rpm -ivh ${epelRpm}
-rpm -ivh http://apt.sw.be/redhat/el6/en/x86_64/rpmforge/RPMS/${rpmforgeRpm}
-rpm -ivh http://rpms.famillecollet.com/enterprise/${remiRpm}
-sed -i '5s/enabled=0/enabled=1/' /etc/yum.repos.d/remi.repo
+if [ ! -e "/etc/yum.repos.d/epel.repo" ]; then
+  curl -O http://ftp.riken.jp/Linux/fedora/epel/6/x86_64/${epelRpm}
+  rpm -ivh ${epelRpm}
+fi
+if [ ! -e "/etc/yum.repos.d/rpmforge.repo" ]; then
+  rpm -ivh http://apt.sw.be/redhat/el6/en/x86_64/rpmforge/RPMS/${rpmforgeRpm}
+fi
+if [ ! -e "/etc/yum.repos.d/remi.repo" ]; then
+  rpm -ivh http://rpms.famillecollet.com/enterprise/${remiRpm}
+  sed -i '5s/enabled=0/enabled=1/' /etc/yum.repos.d/remi.repo
+fi
  
 # scp
 yum -y install openssh-clients
