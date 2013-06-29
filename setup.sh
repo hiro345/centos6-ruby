@@ -42,19 +42,23 @@ yum -y install openssl-devel zlib-devel readline-devel
 yum -y install libyaml libyaml-devel
 
 # ruby
-cd /usr/local/src
-curl -O ftp://ftp.ruby-lang.org/pub/ruby/1.9/${ruby}.tar.bz2
-tar xf ${ruby}.tar.bz2
-cd ${ruby}
-./configure --prefix=/usr/local/ruby/${ruby} --enable-shared
-make
-make test
-make install
+if [ ! -e "/usr/local/src/${ruby}.tar.bz2" ]; then
+  cd /usr/local/src
+  curl -O ftp://ftp.ruby-lang.org/pub/ruby/1.9/${ruby}.tar.bz2
+  tar xf ${ruby}.tar.bz2
+  cd ${ruby}
+  ./configure --prefix=/usr/local/ruby/${ruby} --enable-shared
+  make
+  make test
+  make install
+fi
 
 # rubygems
-cd /usr/local/src
-curl -O http://production.cf.rubygems.org/rubygems/${rubygems}.tgz
-tar xf ${rubygems}.tgz
-cd ${rubygems}
-/usr/local/ruby/${ruby}/bin/ruby setup.rb
+if [ ! -e "/usr/local/src/${rubygems}.tgz" ]; then
+  cd /usr/local/src
+  curl -O http://production.cf.rubygems.org/rubygems/${rubygems}.tgz
+  tar xf ${rubygems}.tgz
+  cd ${rubygems}
+  /usr/local/ruby/${ruby}/bin/ruby setup.rb
+fi
 
